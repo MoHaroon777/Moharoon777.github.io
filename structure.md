@@ -1,15 +1,16 @@
-/my-portfolio
-  |_ _config.yml
-  |_ index.html
-  |_ about.md
-  |_ projects.md
-  |_ assets/
-      |_ css/
-          |_ style.css
-      |_ img/
-  |_ _layouts/
-      |_ default.html
-      |_ splash.html
-      |_ tab.html
-  |_ _includes/
-      |_ navbar.html
+Moharoon777.github.io/
+├── _config.yml
+├── WebPortfolio/
+│   ├── _layouts/
+│   │   ├── default.html
+│   │   ├── splash.html
+│   │   ├── tab.html
+│   ├── _posts/
+│   │   ├── 2024-12-04-welcome-to-jekyll.markdown
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── style.css
+│   │   ├── img/
+│   ├── about.markdown
+│   ├── projects.md
+│   ├── index.html
