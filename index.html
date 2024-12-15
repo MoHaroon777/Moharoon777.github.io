@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Computing with AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link type="image/png" sizes="16x16" rel="icon" href="icon8-ai-16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon8-ai-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon8-ai-32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="icon8-ai-96.png">
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+        
+        button, .btn {
+            font-family: 'Roboto', sans-serif; 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: background-color 0.3s, color 0.3s;
+            z-index: 1000; 
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+
+        .btn-dark {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background-color: #23272b;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #343a60;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-scrolled {
+            background-color: #2c3034; 
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #splash {
+            background: url('splash2.jpg') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 100vh;
+        }
+
+        #splash::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); 
+            z-index: 1;
+            filter: blur(px);
+        }
+
+        #splash h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #splash p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.25rem;
+            font-family: 'Fira Code', monospace;
+            color: #f0ad4e;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        #splash .profile-img {
+            width: 355px;
+            height: 350px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 7px solid #f39c12;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            object-fit: cover; 
+            z-index: 2;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        #splash .profile-img:hover {
+            transform: scale(1.1); 
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            position: relative;
+            z-index: 2;
+            font-size: 1.25rem;
+            font-family: 'Fira Code', monospace;
+            color: #333333;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        #journey {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+        #journey h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto; 
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #f39c12;
+            top: 0;
+            bottom: 150px;
+            left: 50%;
+            margin-left: -3px;
+            margin-top: 100px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 75%;
+            
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #FF9F55;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-left {
+            right: 185px;
+        }
+        .timeline-left h2{
+            text-align: right;
+        }
+        
+        .timeline-right {
+            left: 373px;
+        }
+        
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid #DCDCDC;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #DCDCDC;
+        }
+        
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid #DCDCDC;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #DCDCDC transparent transparent;
+        }
+        
+        .timeline-right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            position: relative;
+            border-radius: 6px;
+            background-color: #DCDCDC;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-family: 'Fira Code', monospace;
+            font-weight: bold;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #f39c12;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        #education-experience {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 60px 0;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .experience-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .experience-card {
+            width: 500px;
+            height: 180px;
+            perspective: 1000px;
+            position: relative;
+            margin: 10px;
+        }
+
+        .experience-card .card-front,
+        .experience-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .experience-card .card-front {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .experience-card .card-back {
+            background: #ffffff;
+            color: #333;
+            text-align: center;
+            transform: rotateY(180deg);
+            font-size: 0.9rem;
+        }
+
+        .experience-card:hover .card-front {
+            transform: rotateY(180deg);
+        }
+
+        .experience-card:hover .card-back {
+            transform: rotateY(0deg);
+        }
+
+        .experience-block {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #f39c12;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-block .block-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .block-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #interests {
+            background: linear-gradient(135deg, #e9ecef, #f1f1f1);
+            padding: 60px 0;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .interest-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .interest-item {
+            flex: 0 1 calc(33% - 20px);
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .interest-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .interest-item h2 {
+            font-size: 1.6rem;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        #education-experience, #interests {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        @media screen and (max-width: 991px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+                border-style: dotted;
+            }
+          
+            .timeline-left::after, .timeline-right::after {
+                left: 15px;
+            }
+            
+            .timeline-right {
+                left: 3.5px;
+            }
+
+            .timeline-left h2{
+                text-align: left;
+            }
+
+            .timeline-left {
+                right: -3.5px;
+            }
+
+            .timeline {
+                bottom: -12px;
+            }
+
+            .interest-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-gap: 30px;
+            }
+        }
+
+        #projects {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 60px 0;
+        }
+        #projects h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        #contact {
+            background-color: #dee2e6;
+            text-align: center;
+            position: relative;
+            padding: 50px 0;
+        }
+        #contact h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #contact .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 6px solid #f39c12;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            object-fit: cover;
+        }
+
+        #contact .btn {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        #contact .btn i {
+            font-size: 1.2rem;
+        }
+
+        #contact .btn:hover {
+            background-color: #f39c12;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+
+        @media (max-width: 768px) {
+            .timeline-item h5, .timeline-item p {
+                text-align: center;
+            }
+        }
+
+        .card img {
+            max-height: 200px;
+            object-fit: cover;
+            color: #333333;
+        }
+
+        .row {
+            margin-bottom: 50px;
+        }
+        
+        .navbar-brand {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.75rem;
+            color: #f39c12 !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-family: inherit;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
+            transform: scale(1.01); 
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: linear-gradient(to bottom, #f39c12, #e67e22);
+        }
+
+        .collapse:not(.show) {
+            transition: height 0.3s ease;
+        }
+
+        .fixed-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, color 0.5s;
+            z-index: 1000;
+            
+        }
+
+        .fixed-button:hover {
+            background-color: #e67e22;
+            color: black; 
+            transform: scale(1.03); 
+        }
+
+        #awards {
+            background-color: #f8f8f8;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #awards .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: 'Fira Code', monospace;
+            color: #f39c12;
+            margin-bottom: 30px;
+        }
+
+        .awards-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .awards-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .award-card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .award-card .card-front,
+        .award-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.8s;
+            padding: 10px;
+        }
+
+        .award-card .card-front {
+            background-color: #ffffff;
+            border: 2px solid #f39c12;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .award-card .card-back {
+            background-color: #f39c12;
+            color: #ffffff;
+            transform: rotateY(180deg);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .award-card:hover .card-front {
+            transform: rotateY(180deg);
+        }
+
+        .award-card:hover .card-back {
+            transform: rotateY(0deg);
+        }
+
+
+        .module-grades {
+            flex: 1;
+            margin-left: 20px; 
+        }
+
+        .grades-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grades-table th, .grades-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .grade {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            padding: 5px 15px;
+            background: #f39c12;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#splash">Mohamud Haroon</a>
+            <button
+                class="navbar-toggler stylish-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+                <span class="stylish-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3 12.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#splash">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#work-experience">Work Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#awards">Awards & Grades</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#interests">Interests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>    
+    
+    <section id="splash">
+        <div class="container">
+            <img src="pfp1.jpg" alt="Profile" class="profile-img mt-4"> 
+            <h1>Welcome to My Portfolio</h1>
+            <p>I'm thrilled to have you here! 😊</p>
+            <p>Explore my projects, get to know my journey, and feel free to connect.</p>
+        </div>
+    </section>
+
+    <section id="journey">
+        <div class="timeline">
+            <h1 class="section-title">JOURNEY</h1>
+            <div class="timeline-container timeline-left">
+                <div class="timeline-content">
+                    <h2>2017</h2>
+                    <p>Finished Secondary School Leaving Certificate</p>
+                </div>
+            </div>
+            <div class="timeline-container timeline-right">
+                <div class="timeline-content">
+                    <h2>2020</h2>
+                    <p>Graduated from Electronic Engineering with Ordinary Bachelor</p>
+                </div>
+            </div>
+            <div class="timeline-container timeline-left">
+                <div class="timeline-content">
+                    <h2>2021</h2>
+                    <p>1 Year Course on CCNA and Training</p>
+                </div>
+            </div>
+            <div class="timeline-container timeline-right">
+                <div class="timeline-content">
+                    <h2>2024</h2>
+                    <p>Currently in My Fourth-Year Studying Computing with AI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work-experience">   
+        <div class="container">
+            <h1 class="section-title">WORK EXPERIENCE</h1>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="card-front">
+                        <h3>Software Developer Intern</h3>
+                        <p>Ocuco</p>
+                    </div>
+                    <div class="card-back">
+                        <p>Jan 2024 - September 2024</p>
+                        <p>Developed and maintained software applications using Delphi and SQL. 
+                            Contributed to improving product performance and user experience.</p>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="card-front">
+                        <h3>FPGA Engineer Intern</h3>
+                        <p>AMD</p>
+                    </div>
+                    <div class="card-back">
+                        <p>June 2018 - August 2018</p>
+                        <p>Worked on FPGA design and verification using Verilog. 
+                            Gained experience in hardware design and testing methodologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="awards">
+        <div class="container">
+            <h1 class="section-title">AWARDS & MODULE GRADES</h1>
+            <div class="awards-content">
+                <div class="awards-grid">
+                    <!-- Award Cards -->
+                    <div class="award-card">
+                        <div class="card-front">
+                            <h3>Best Future Solution</h3>
+                            <p>Technological University Dublin</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Received for outstanding academic performance in 2024.</p>
+                        </div>
+                    </div>
+                    <div class="award-card">
+                        <div class="card-front">
+                            <h3>Best Innovation in Water-Rocket Design</h3>
+                            <p>Technological University Dublin</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Awarded for building the best water-pressurised rocket prototype.</p>
+                        </div>
+                    </div>
+                    <div class="award-card">
+                        <div class="card-front">
+                            <h3>Employee Excellence Award</h3>
+                            <p>Musgrave</p>
+                        </div>
+                        <div class="card-back">
+                            <p>Recognized for outstanding contributions and work ethic in my team at Musgrave.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="module-grades">
+                    <h2>Module Grades</h2>
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data Structures & Algorithms</td>
+                                <td><span class="grade">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Data Analysis</td>
+                                <td><span class="grade">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Big Data Technologies</td>
+                                <td><span class="grade">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Cloud Service & Distribution</td>
+                                <td><span class="grade">C</span></td>
+                            </tr>
+                            <tr>
+                                <td>Operating Systems</td>
+                                <td><span class="grade">C</span></td>
+                            </tr>
+                            <tr>
+                                <td>Server-side Web Development</td>
+                                <td><span class="grade">C</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="interests">
+        <div class="container">
+            <h1 class="section-title">INTERESTS & HOBBIES</h1>
+            <div class="interest-grid">
+                <div class="interest-item">
+                    <h2>AI & Machine Learning</h2>
+                    <p>Passionate about the potential of AI and machine learning to solve complex problems and improve people's lives. I enjoy exploring new algorithms and techniques in this rapidly evolving field.</p>
+                </div>
+                <div class="interest-item">
+                    <h2>Car Enthusiast & Modifications</h2>
+                    <p>I have a keen interest in cars, particularly in performance tuning and modifications. I enjoy learning about automotive engineering and working on my own vehicles.</p>
+                </div>
+                <div class="interest-item">
+                    <h2>Engineering & Robotics</h2>
+                    <p>Fascinated by the world of engineering and robotics. I like learning and experimenting with different robotic systems and exploring the intersection of hardware and software.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <div class="container">
+            <h1 class="m-2 p-2">PROJECTS</h1>
+            <p>Here are some of my projects:</p>
+    
+            <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Project 1 -->
+                    <div class="carousel-item active">
+                        <div class="card">
+                            <img src="ids.jpeg" class="card-img-top" alt="Intrusion Detection System">
+                            <div class="card-body">
+                                <h5 class="card-title">Intrusion Detection System in DNP3 Using AI</h5>
+                                <p class="card-text">Developed an AI-powered intrusion detection system tailored for the DNP3 protocol. This project integrates machine learning to identify and mitigate potential threats in industrial control systems, ensuring enhanced security and reliability.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="carousel-item">
+                        <div class="card">
+                            <img src="go-cart.jpeg" class="card-img-top" alt="Electric Go-Kart">
+                            <div class="card-body">
+                                <h5 class="card-title">Electric Go-Kart Using MSP430</h5>
+                                <p class="card-text">Designed and built an electric Go-Kart using the MSP430 microcontroller as the master control unit. This project involved hardware integration, motor control, and safety features for a fully functional, eco-friendly vehicle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="carousel-item">
+                        <div class="card">
+                            <img src="ecommerce.jpeg" class="card-img-top" alt="Django eCommerce Website">
+                            <div class="card-body">
+                                <h5 class="card-title">Django-Based eCommerce Website</h5>
+                                <p class="card-text">Developed a feature-rich eCommerce website using Django. This project includes user authentication, product listings, shopping cart functionality, order management, and an intuitive user interface.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#projectsCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h1 class="section-title">CONTACT ME</h1>
+            <img src="pfp1.jpg" alt="Profile" class="profile-img mt-4"> 
+            <p class="mt-3">Have a question or want to connect?</p>
+            <a href="mailto:example@example.com" id="emailButton" class="btn btn-dark mt-4 px-4">
+                <i class="fas fa-envelope"></i> Email Me
+            </a>
+            <br>
+            <a href="https://github.com/moharoon777" target="_blank" id="githubButton" class="btn btn-dark mt-3 px-4a ">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <br>
+            <a href="https://www.linkedin.com/in/mohamudharoon/" target="_blank" id="linkedinButton" class="btn btn-dark mt-3 px-4a ">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <div id="emailConfirmation" class="alert alert-success mt-3" style="display: none;" role="alert">
+                Thank you for your email! I will get back to you soon.
+            </div>
+        </div>
+    </section>
+  
+    <button class="fixed-button" onclick="scrollToSection('contact')">Contact Me</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+	    <script>
+        // Automatically activate tabs on scroll
+        document.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar .nav-link');
+            let current = '';
+    
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+    
+            navLinks.forEach((link) => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    
+        // Email confirmation popup
+        const emailButton = document.getElementById('emailButton');
+        const emailConfirmation = document.getElementById('emailConfirmation');
+    
+        emailButton.addEventListener('click', function () {
+            emailConfirmation.style.display = 'block';
+            setTimeout(() => {
+                emailConfirmation.style.display = 'none';
+            }, 5000);
+        });
+    
+        // Function to scroll to a specific section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    
+        // Toggle navbar background color on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 50); 
+        });
+    </script>
+    
+</body>
+</html>
